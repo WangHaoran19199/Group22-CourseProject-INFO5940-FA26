@@ -4,7 +4,7 @@
 
 ## Player and purpose
 
-A casual player invents a pet, watches it race, and can point to a moment that could only have happened because of the pet they created. A player can have fun even when their pet loses. A food-loving dog stopping mid-race for a snack can be more memorable than a win.
+Draw & Dash is a single-player browser game for casual players who enjoy doodling creatures or making up their personalities. Players sketch a pet, describe it in writing or aloud, or combine those inputs. They confirm its appearance and up to two habits, then watch it race two computer-controlled pets. The fun is seeing how those habits change the race. A food-loving dog might give up the lead for a snack, making the race memorable even if it loses.
 
 ## One complete round
 
@@ -32,6 +32,6 @@ The six steps above are required for the local standalone web demo by December 1
 - Replaying the simulation with identical initial state, any random seed used, and timed inputs reproduces the official event order and ranking. Narrator wording can vary.
 - Each live claim and recap statement can be checked against the recorded events.
 
-## Questions for formal Inception
+## Open questions
 
 Which initial habits and props make the two-habit sequence easiest to see? How long should a pause last, and how should the engine break simultaneous trigger ties or time a cheer during a pause? What lead change or finish margin qualifies for a live highlight? How long can a line wait before it becomes stale, and when should in-race playback cut off as the results appear? Team testing can also settle acceptable sprite wait times, speech voices on the demo laptop, and whether another commentary model offers enough savings at equivalent quality.

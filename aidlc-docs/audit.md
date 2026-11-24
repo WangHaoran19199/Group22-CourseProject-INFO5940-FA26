@@ -493,3 +493,52 @@ Do not start Construction or submit to Canvas on my behalf.
 **AI Response**: The 23 milestone files are staged. The traceability and internal-link checks passed, and remote `main` still matches the local parent commit. Continuing with the authorized commit, fast-forward push, and public verification.
 
 ---
+
+## Inception follow-up — README editorial update
+
+**Timestamp**: 2026-11-24T20:45:28Z
+
+**User Input**:
+
+```text
+using AI-DLC, please first take a look at the AI-DLC rules and the current state of the repo. then, please help me update README.md. after the section of team member names, please add these: 1. coding agents used by the team: Codex and Claude Code; 2. AI-DLC version: 1.0.1. after that, please slightly improve the paragraphs of text, doing these: 1. improve the text readability, making it very human-readable, easy to understand, detailed, and not imprecise. one minor issue on this I noticed is: "Players can correct its interpretation. [For example,] If the drawing suggests wings and the description says the pet cannot fly, the game asks" it may be better to add "for example," here; 2. check the text again these requirements: "
+
+- **About 4–6 paragraphs (roughly 1–2 pages)** covering these four areas:
+  1. **Problem and rationale for using LLMs:** the problem your product addresses, who it is for, and why an LLM is an appropriate way to solve it.
+  2. **Planned LLM integration:** how LLM capabilities will be part of the product, which features depend on them, whether you plan to use agents or tools, and which model or provider you plan to use.
+  3. **Project scope and feasibility:** what the finished product will do by the final project deadline. It should be a meaningful course project, not a single minor feature, while remaining achievable.
+  4. **Collaboration plan:** how often your team will meet, how meetings will be conducted (in person or online), how you will communicate between meetings, and how you will share the work.
+
+" see if anything mismatches or is missing. please remember that you're encouraged to ask me for clarifications and decisions.
+```
+
+**AI Response**: Reviewed the local AI-DLC rules and current repository state. Updated the README to list Codex, Claude Code, and AI-DLC 1.0.1 after the team roster. Revised five overview paragraphs, including the wings example, to explain the LLM rationale, planned API use and model responsibilities, December demo scope, and approved collaboration and ownership plan.
+
+**Context**: The greenfield Inception milestone is already complete. This editorial update follows the approved requirements, vision, technical environment, and unit of work. Stage and plan status are unaffected. Construction remains pending separate authorization.
+
+**Validation**: Checked Markdown rendering, the five-paragraph body, roster and metadata order, three local document links, and coverage of all four assignment areas. The technical environment still tracks live model access, response time, and actual spend as pending. Resiliency Baseline and Security Baseline were skipped as configured. Partial Property-Based Testing is N/A for this prose edit.
+
+---
+
+## Inception follow-up — Vision wording review
+
+**Timestamp**: 2026-11-24T21:09:10Z
+
+**User Input**:
+
+```text
+thank you! please briefly double-check the current readme to see if it matches the requirements; if it does, please also review the wording of VISION.md and slightly adjust it if necessary, with these required sections in mind: "
+
+- What you are building and for whom
+- MVP features in scope
+- Features explicitly out of scope
+- Open questions
+
+". requirements: 1. this time please keep changes minimal, no need to edit sections that already match the requirements 2. please make the "What you are building and for whom" part (mainly #player and purpose) more specific and obvious
+```
+
+**AI Response**: Confirmed that the current README covers the four requested areas in five overview paragraphs. Clarified the vision opening to name the browser game, its intended casual players, and the core play experience. Renamed the final heading to “Open questions” to reflect the completed Inception stage. The existing MVP and out-of-scope descriptions already meet the requested coverage.
+
+**Context**: Editorial review of the approved Inception inputs. Stage and plan status are unaffected. Resiliency Baseline and Security Baseline were skipped as configured. Partial Property-Based Testing is N/A for this prose edit.
+
+---
