@@ -1,0 +1,26 @@
+# Components
+
+**Application Design · approved by Group 22 on November 24, 2026.** Draw & Dash runs in one browser with one loopback Express server. These are responsibilities within that application. Units Generation will determine how to divide implementation work.
+
+| ID | Component | Runs in | Owns | Public boundary |
+|---|---|---|---|---|
+| UI | Player interface | Browser | Owns editable input controls, canvas strokes, microphone capture, and the displayed screen. Captures player intents, renders the latest screen and engine events, and releases device tracks and drawing resources when the view is cleared. | Reads the session view through `SessionPort`. Sends input and a game-time tick to the session. Uses the native DOM, Canvas, and microphone. |
+| Session | Game session | Browser | Owns the current phase, session identity, active race identity, confirmed pet and artwork, and pending timed player input. Coordinates creation, start, finish, replay, and restart. Publishes a read-only screen view. | Accepts UI intents, starts pet and commentary operations, and advances the engine. Delivers the same ordered race update to rendering and commentary. |
+| Pet | Pet creation and review | Browser | Owns the source inputs, draft revision, proposed card, clarification answers, and local edits. Validates the card before confirmation and chooses original, reusable, or generated artwork. Loads the bundled examples. | Provides draft and confirmation operations to Session. Uses the Local AI API for transcription, fresh interpretation, and required sprite generation. |
+| Engine | Race engine | Browser, pure TypeScript | Owns the authoritative race state, game clock, habit execution, consumed cheer, ordered event log, and official finish order. Advances all three racers under the same rules. | Accepts confirmed racers, the fixed course, timed inputs and a seed when needed. Returns read-only state and new events. Has no UI, audio, network, or model dependency. |
+| Commentary | Race commentary | Browser | Owns the prepared opening and routine lines, highlight requests, visible captions, mute preference, and one pending spoken highlight. Uses engine facts to decide whether a returned or queued line is still eligible. | Consumes race updates, requests AI text through the Local AI API, offers eligible lines to Browser speech, and reports caption, sound, and failure status to Session. |
+| Speech | Browser speech | Browser, device adapter | Owns the active browser utterance and its completion notification. Reports voice availability and cancels current speech on request. | Exposes availability, play, and cancel to Commentary. Uses browser speech synthesis. A fake adapter can complete a line on demand in a test. |
+| API | Local AI API | Loopback Express server and its browser client contract | Owns validation at the HTTP boundary, server-only provider credentials, model calls, and operation-specific failures. Checks output before returning it. Each request carries the input needed for that operation. | One browser-facing contract serves Pet and Commentary. Express calls OpenAI for text, image, or transcription. Routine tests can supply mock results through the same contract. |
+
+## Ownership through a round
+
+- **Before confirmation**, Pet can replace or edit the draft. Under decision 1A, an appearance edit, selection or removal of a supported habit, or a focused clarification answer updates the card directly. Under 2A, selecting an example opens a fresh editable copy of its source and draft. The bundled example is available again in its original form on restart.
+- **At confirmation**, Pet checks every conflict is resolved and the card has zero to two supported habits. Session accepts a confirmed pet only once the matching artwork is ready. A player-supplied sketch takes precedence. If only the habits changed, reuse the approved sprite for the same appearance. A fresh description without artwork requires an image of the confirmed appearance.
+- **During the race**, Engine is the single writer of movements, events, and rankings. UI uses the snapshot to draw pets and the new events to animate actions such as dipping toward a snack. Commentary reads the same update and cannot issue movement commands. Session times the cheer using game time, separate from provider latency.
+- **At finish**, Session retains the official ranking for the results screen. Commentary discards race chatter and requests a recap from the completed log. Replay keeps the confirmed pet and creates a new race identity. Restart invalidates the session, retires outstanding work, and clears submissions locally. Finishing or replaying can never promote an old line into the current race.
+
+## External boundaries
+
+Only API contacts OpenAI. The browser sends selected creation inputs after disclosure. During racing, the commentary request carries relevant pet descriptors and engine facts. It needs neither the raw microphone clip nor the original drawing. Speech is a device capability. With no usable voice, UI displays the sound status and captions. Runtime access, quality, timing, and audible playback still need rehearsal.
+
+[Component methods](component-methods.md) · [Services](services.md) · [Dependency matrix and data flow](component-dependency.md) · [Design overview](application-design.md)
